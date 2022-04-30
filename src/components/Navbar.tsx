@@ -1,18 +1,26 @@
-import './component_styles/Navbar.module.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 
 export default function Navbar() {
     return (
         <nav>
             <h1>Some CLOTHES</h1>
-            <ul className='nav-list'>
-                <li>Hats</li>
-                <li>Tops</li>
-                <li>Bottoms</li>
-                <li>Shoes</li>
-                <li>New</li>
-                <li>On Sale</li>
-            </ul>
-            <p>ICON</p>
+            <div>
+                <ul>
+                    <li>Hats</li>
+                    <li>|</li>
+                    <li>Tops</li>
+                    <li>|</li>
+                    <li>Bottoms</li>
+                    <li>|</li>
+                    <li>Shoes</li>
+                    <li>|</li>
+                    <li>New</li>
+                    <li>|</li>
+                    <li>On Sale</li>
+                </ul>
+            </div>
+            <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} />
         </nav>
     )
 }

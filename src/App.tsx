@@ -1,7 +1,9 @@
-import './App.module.scss';
+import './App.scss';
 
 
 import Navbar from './components/Navbar';
+import HeroCollection from './components/HeroCollection';
+import FeaturedItems from './components/FeaturedItems';
 
 function App() {
   return (
@@ -9,8 +11,9 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main>
-        
+      <main style={{flex: 1}}>
+        <HeroCollection />
+        <FeaturedItems />
 
       </main>
     </div>
