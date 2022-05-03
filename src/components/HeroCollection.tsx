@@ -1,4 +1,4 @@
-import collectionPic from '../assets/blue-t-shirt.jpg';
+import collectionPic from '../assets/Plain/blue-t-shirt.jpg';
 
 export default function HeroCollection(){
     return (

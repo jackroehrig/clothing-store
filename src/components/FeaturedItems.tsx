@@ -1,5 +1,5 @@
-import blackButtondown from '../assets/black-buttondown-model.jpg';
-import fancySuit from '../assets/formalwear-model.jpg';
+import blackButtondown from '../assets/Dress-Up/black-ss-buttondown-dress-shirt.jpg';
+import fancySuit from '../assets/Sporting/gray-squares-sportcoat.jpg';
 import leatherBag from '../assets/leather-bag-model.jpg';
 
 export default function FeaturedItems(){
