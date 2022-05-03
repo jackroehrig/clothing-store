@@ -15,9 +15,7 @@ export default function Navbar() {
                     <li>|</li>
                     <li>Shoes</li>
                     <li>|</li>
-                    <li>New</li>
-                    <li>|</li>
-                    <li>On Sale</li>
+                    <li>Collections</li>
                 </ul>
             </div>
             <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} />
