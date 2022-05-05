@@ -1,22 +1,21 @@
 import './App.scss';
-
-
-import Navbar from './components/Navbar';
-import HeroCollection from './components/HeroCollection';
-import FeaturedItems from './components/FeaturedItems';
+import {Switch, Route} from 'react-router-dom'
+import Home from './components/Home';
+import Results from './components/Results';
 
 function App() {
-  return (
-    <div className="App">
-      <header>
-        <Navbar />
-      </header>
-      <main style={{flex: 1}}>
-        <HeroCollection />
-        <FeaturedItems />
 
-      </main>
-    </div>
+  return (
+    <>
+      <Switch>
+        <Route path='/'>
+          <Home/>
+        </Route>
+        <Route path='/results/:category'>
+          <Results/>
+        </Route>
+      </Switch>
+    </>
   );
 }
 

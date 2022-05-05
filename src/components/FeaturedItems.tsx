@@ -1,39 +1,33 @@
-import blackButtondown from '../assets/Dress-Up/black-ss-buttondown-dress-shirt.jpg';
-import fancySuit from '../assets/Sporting/gray-squares-sportcoat.jpg';
-import leatherBag from '../assets/leather-bag-model.jpg';
+import { useEffect, useState } from "react"
+import { ClothingItem } from "../interfaces/interfaces"
 
-export default function FeaturedItems(){
+export default function FeaturedItems() {
+    let [items, setItems] = useState<ClothingItem[]>([])
 
-    interface Feature {
-        source: string;
-        alt: string;
-        link: string;
-        collectionName: string;
-    }
+    useEffect(() => {
+        const fetchRandoms = async () => {
+            const response = await fetch('http://localhost:4000/items/random_three')
+            const data = await response.json()
+            setItems([...data.items])
+        }
+        fetchRandoms()
+    }, [])
 
-    const items: Feature[] = [{
-        source : blackButtondown,
-        alt: 'man in black short sleeve buttondown',
-        link: '#',
-        collectionName: 'Fancy Plain'
-    }, {
-        source: fancySuit,
-        alt: 'man in glasses wearing formalwear',
-        link: '#',
-        collectionName: 'Fancy Schmancy'
-    }, {
-        source: leatherBag,
-        alt: 'model on stairs holding quality leather bag',
-        link: '#',
-        collectionName: 'Leather',
-    }]
-
-    const features = items.map((item : Feature, i) => {
+    const features = items.map((item, i) => {
+        let image = false
+        try{
+            image = require('..' + item.picture) 
+        } catch(err){
+            console.log(err)
+        }
+        // console.log(require(`..${item.picture}`))
+        // let image = require('../assets/Plain/red-t-shirt.jpg')
+    
         return (
             <div className="feature-box" key={i}>
-                <img alt={item.alt} src={item.source} />
+                <img alt={item.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
                 <div className="overlay">
-                    <button className='overlay-button' onClick={() => console.log(item.link)}>SHOP NOW</button>
+                    <button className='overlay-button'>SHOP NOW</button>
                 </div>
             </div>
         )
