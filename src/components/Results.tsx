@@ -14,15 +14,17 @@ export default function Results(){
     useEffect(() => {
         const fetchItems = async () => {
             const response = await fetch(`http://localhost:4000/results/${category}`)
+            console.log(response)
             const data = await response.json()
             setResults([...data.items])
         }
         fetchItems()
-    }, [])
+    }, [category])
 
     return(
         <div>
             <h1>Hiya</h1>
+            <p>{results ? results[0].name : null}</p>
         </div>
     )
 }
