@@ -27,6 +27,7 @@ nav {
     a {
       color: white;
       text-decoration: none;
+      height: 100%;
     }
   }
 
@@ -53,7 +54,6 @@ nav {
     a {
       color: white;
       text-decoration: none;
-      font-family: 'Open Sans', sans-serif;
       font-weight: bold;
     }
   }
@@ -101,11 +101,6 @@ nav {
     width: 30%;
     height: 35px;
     font-weight: bold;
-
-    a{
-      color: inherit;
-      text-decoration: none;
-    }
 
     &:hover {
       cursor: pointer;
@@ -200,5 +195,19 @@ nav {
 
   img {
     width: 100%;
+  }
+}
+
+// SHOW COLLECTION STYLES
+.collection-container{
+  text-align: center;
+
+  h2 {
+    margin-bottom: 5px;
+  }
+
+  h6 {
+    margin-top: 5px;
+    font-size: 0.8rem;
   }
 }

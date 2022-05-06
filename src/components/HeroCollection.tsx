@@ -7,7 +7,7 @@ export default function HeroCollection(){
           <div id='hero-content'>
             <div>
                 <h2>Plainest Collection</h2>
-                <button><Link to='/show/collections/1'>VIEW</Link></button>
+                <Link to='/show/collections/1'><button>VIEW</button></Link>
             </div>
             <img id='collection-picture' alt='blue shirt from plainest collection' src={collectionPic}/>
           </div>
