@@ -2,7 +2,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 92vh;
 }
 
 // Nav Styles
@@ -10,19 +10,27 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #3f3e3e;
+  color: white;
+  height: 8vh;
   /* margin-bottom: 2px; */
   /* border-bottom: 3px solid rgba(0, 0, 0, 0.8); */
 
   h1 {
-    font-size: 2rem;
-    font-weight: 400;
-    width: 30%;
+    font-size: 3rem;
     text-align: center;
+    font-family: 'Eczar', serif;
+    font-weight: 300;
+    padding-left: 48px;
+    height: 100%;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
 
   div {
-    // background-color: #3f3e3e;
-    // color: white;
     width: 60%;
     height: 30px;
     margin: 20px 0;
@@ -41,6 +49,13 @@ nav {
 
   li {
     font-weight: bold;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: bold;
+    }
   }
 
   &>* {
@@ -67,7 +82,7 @@ nav {
 }
 
 #hero-content {
-  width: 50%;
+  width: 65%;
   height: 50%;
   display: flex;
   justify-content: space-between;
@@ -83,9 +98,14 @@ nav {
     background-color: #3f3e3e;
     color: white;
     border: none;
-    width: 125px;
+    width: 30%;
     height: 35px;
     font-weight: bold;
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
 
     &:hover {
       cursor: pointer;
@@ -93,11 +113,13 @@ nav {
   }
 
   #collection-picture {
-    width: 400px;
+    width: 50%;
+    max-width: 500px;
   }
 
   div {
     text-align: center;
+    width: 50%;
   }
 }
 
@@ -115,7 +137,7 @@ nav {
   width: 500px;
   position: relative;
 
-  .overlay{
+  .overlay {
     position: absolute;
     left: 0;
     top: 0;
@@ -156,5 +178,27 @@ nav {
   img {
     width: 100%;
     height: 100%;
+  }
+}
+
+// RESULTS STYLES
+.results{
+  text-align: center;
+}
+
+.results-area {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5%;
+}
+
+.result, .col-result {
+  width: 25%;
+  border: 2px solid black;
+  margin-bottom: 5%;
+
+  img {
+    width: 100%;
   }
 }

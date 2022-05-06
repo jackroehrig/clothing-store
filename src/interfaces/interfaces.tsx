@@ -34,3 +34,8 @@ export interface Shoe extends ClothingItem {
     shoeId: number;
     category: string;
 }
+
+export interface Collection {
+    name: string;
+    releaseDate: Date;
+}

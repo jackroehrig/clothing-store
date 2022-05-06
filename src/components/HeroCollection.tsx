@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import collectionPic from '../assets/Plain/blue-t-shirt.jpg';
 
 export default function HeroCollection(){
@@ -6,9 +7,8 @@ export default function HeroCollection(){
           <div id='hero-content'>
             <div>
                 <h2>Plainest Collection</h2>
-                <button>SHOP NOW</button>
+                <button><Link to='/show/collections/1'>VIEW</Link></button>
             </div>
-            {/* <p>Image of collection</p> */}
             <img id='collection-picture' alt='blue shirt from plainest collection' src={collectionPic}/>
           </div>
         </div>
