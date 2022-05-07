@@ -39,3 +39,7 @@ export interface Collection {
     name: string;
     releaseDate: Date;
 }
+
+export interface StringParams {
+    category: string;
+}

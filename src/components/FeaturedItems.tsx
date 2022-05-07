@@ -27,7 +27,8 @@ export default function FeaturedItems() {
             <div className="feature-box" key={i}>
                 <img alt={item.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
                 <div className="overlay">
-                    <button className='overlay-button'>SHOP NOW</button>
+                    <button className="add-button">+</button>
+                    <button className='view-button'>VIEW</button>
                 </div>
             </div>
         )

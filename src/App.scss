@@ -5,6 +5,10 @@
   height: 92vh;
 }
 
+main {
+  background-color: rgb(222, 224, 225);
+}
+
 // Nav Styles
 nav {
   display: flex;
@@ -22,7 +26,7 @@ nav {
     font-family: 'Eczar', serif;
     font-weight: 300;
     padding-left: 48px;
-    height: 100%;
+    height: 4.9rem;
 
     a {
       color: white;
@@ -87,29 +91,35 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20%;
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     color: white;
     text-shadow: 0 2px 5px black;
   }
 
   button {
-    background-color: #3f3e3e;
+    background-color: rgba(185, 185, 185, 0.774);
     color: white;
-    border: none;
-    width: 30%;
+    border: 3px solid white;
+    box-shadow: 0 40px 100px 2px grey;
+    text-shadow: 0 1px 20px black;
+    width: 5rem;
     height: 35px;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
 
-    &:hover {
-      cursor: pointer;
-    }
+  button:hover {
+    cursor: pointer;
+    box-shadow: 0 40px 100px 2px grey, 0 0 10px 2px white;
   }
 
   #collection-picture {
-    width: 50%;
+    width: 30%;
     max-width: 500px;
+    box-shadow: 0 40px 80px 2px grey;
   }
 
   div {
@@ -126,10 +136,11 @@ nav {
   flex-wrap: wrap;
   gap: 4vw;
   padding-top: 20px;
+  background-color: rgb(222, 224, 225);
 }
 
 .feature-box {
-  width: 500px;
+  width: 25%;
   position: relative;
 
   .overlay {
@@ -146,28 +157,41 @@ nav {
       -webkit-box-shadow: inset 0px 18px 20px -10px #000000, inset 0px -18px 20px -10px #000000;
       box-shadow: inset 0px 18px 20px -10px #000000, inset 0px -18px 20px -10px #000000;
 
-      .overlay-button {
+      .view-button, .add-button {
         display: initial;
       }
     }
   }
 
-  .overlay-button {
-    width: 20%;
+  .view-button, .add-button {
+    width: 6rem;
     height: 30px;
-    color: white;
-    background-color: #3f3e3e;
     font-weight: bold;
-    border: none;
     position: absolute;
     display: none;
     transition: display 1s ease-out;
     bottom: 10px;
     right: 10px;
+    background-color: rgba(185, 185, 185, 0.774);
+    color: white;
+    border: 3px solid white;
+    box-shadow: 0 40px 100px 2px grey;
+    text-shadow: 0 1px 20px black;
 
     &:hover {
       cursor: pointer;
+      box-shadow: 0 0 10px 2px white;
     }
+  }
+
+  .add-button {
+    font-size: 2rem;
+    height: 3rem;
+    width: 4rem;
+    top: 10px;
+    right: 10px;
+    border-width: 2px;
+    border-radius: 50px;
   }
 
   img {
@@ -177,8 +201,15 @@ nav {
 }
 
 // RESULTS STYLES
-.results{
+.results {
   text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    font-family: 'Eczar', serif;
+    margin-bottom: 0;
+  }
 }
 
 .results-area {
@@ -188,7 +219,8 @@ nav {
   gap: 5%;
 }
 
-.result, .col-result {
+.result,
+.col-result {
   width: 25%;
   border: 2px solid black;
   margin-bottom: 5%;
@@ -199,15 +231,35 @@ nav {
 }
 
 // SHOW COLLECTION STYLES
-.collection-container{
+.collection-container {
   text-align: center;
 
   h2 {
     margin-bottom: 5px;
   }
 
-  h6 {
+  h5 {
     margin-top: 5px;
     font-size: 0.8rem;
   }
+
+  h4 {
+    margin-bottom: 5px;
+    font-size: 2rem;
+  }
+}
+
+.items-container {
+  margin: 0 20px;
+  text-align: start;
+}
+
+.collection-items-container {
+  display: flex;
+  gap: 20px;
+}
+
+.collection-item {
+  padding: 5px;
+  border: 2px solid black;
 }

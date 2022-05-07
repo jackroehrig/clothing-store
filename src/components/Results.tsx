@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-// import { Collection, ClothingItem } from "../interfaces/interfaces"
+import { StringParams } from "../interfaces/interfaces"
+// import { Collection, resItem } from "../interfaces/interfaces"
 
-export default function Results(){
+export default function Results() {
     let [results, setResults] = useState<any[]>([])
 
-    type ResultsParams = {
-        category: string;
-    }
-
-    const {category} = useParams<ResultsParams>()
+    const { category } = useParams<StringParams>()
 
     useEffect(() => {
         const fetchItems = async () => {
@@ -20,15 +17,15 @@ export default function Results(){
         fetchItems()
     }, [category])
 
-    const capitalize = (word : string) : string => {
+    const capitalize = (word: string): string => {
         let newWord = word[0].toUpperCase() + word.slice(1)
         return newWord
     }
 
-    let squares : JSX.Element[] | undefined
-    
+    let squares: JSX.Element[] | undefined
 
-    if(category === 'collections'){
+
+    if (category === 'collections') {
         squares = results.map((col, i) => {
             let date = new Date(col.releaseDate)
             return (
@@ -44,22 +41,23 @@ export default function Results(){
 
             try {
                 image = require(`..${res.picture}`)
-            } catch(err){
+            } catch (err) {
                 console.log(err)
             }
 
-            return(
-                <div className="result" key={i}>
+            return (
+                <div className="feature-box" key={i} style={{margin: '2rem 0'}}>
                     <img alt={res.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
-                    <h3>{res.name} ${res.price}</h3>
-                    <p>{res.mainColor}</p>
-                    <p>{res.s || res.m || res.l || res.xl ? 'Available' : 'None Available'}</p>
+                    <div className="overlay">
+                        <button className="add-button">+</button>
+                        <button className='view-button'>VIEW</button>
+                    </div>
                 </div>
             )
         })
     }
 
-    return(
+    return (
         <div className="results">
             <h2>{capitalize(category)}</h2>
             <div className="results-area">
