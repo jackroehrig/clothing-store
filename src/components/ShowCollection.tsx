@@ -50,7 +50,7 @@ export default function ShowCollection(props: any) {
 
     useEffect(() => {
         const fetchCollection = async () => {
-            const response = await fetch(`http://localhost:4000/collections/${id}`)
+            const response = await fetch(`https://blooming-bastion-32922.herokuapp.com/collections/${id}`)
             const data = await response.json()
             setCollection({ ...data.col })
         }
@@ -105,7 +105,7 @@ export default function ShowCollection(props: any) {
                         )
                     }) : 'This collection does not have bottoms.'}
                 </section>
-                <h4>Shoe</h4>
+                <h4>Shoes</h4>
                 <section className="collection-items-container">
                     {collection?.shoes[0] ? collection?.shoes.map((shoe: ClothingItem, i: number) => {
                         return (

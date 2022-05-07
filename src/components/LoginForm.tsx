@@ -15,7 +15,7 @@ export default function LoginForm(){
     const history = useHistory()
 
     const handleSubmit = async () => {
-        const response = await fetch(`http://localhost:4000/authentication/`, {
+        const response = await fetch(`https://blooming-bastion-32922.herokuapp.com/authentication/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export default function LoginForm(){
                 <input id='username' name='username' onChange={(e) => setCredentials({...credentials, username: e.target.value})} /><br />
                 <label htmlFor='password'>Password</label><br />
                 <input id='password' name='password' type='password' onChange={(e) => setCredentials({...credentials, password: e.target.value})} /><br />
-                {errorMessage ? <p>{errorMessage}</p> : null}
+                {errorMessage ? <p style={{textAlign: 'center'}}>{errorMessage}</p> : null}
                 <section>
                     <button onClick={(e) => {
                         e.preventDefault()

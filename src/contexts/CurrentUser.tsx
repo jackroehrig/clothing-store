@@ -8,7 +8,7 @@ function CurrentUserProvider({ children }: any){
 
     useEffect(() => {
         const getLoggedInUser = async () => {
-            let res = await fetch('http://localhost:4000/authentication/profile', {
+            let res = await fetch('https://blooming-bastion-32922.herokuapp.com/authentication/profile', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }

@@ -8,7 +8,7 @@ export default function FeaturedItems(props:any) {
 
     useEffect(() => {
         const fetchRandoms = async () => {
-            const response = await fetch('http://localhost:4000/items/random_three')
+            const response = await fetch('https://blooming-bastion-32922.herokuapp.com/items/random_three')
             const data = await response.json()
             setItems([...data.items])
         }

@@ -11,7 +11,7 @@ export default function Results(props:any) {
 
     useEffect(() => {
         const fetchItems = async () => {
-            const response = await fetch(`http://localhost:4000/${category}`)
+            const response = await fetch(`https://blooming-bastion-32922.herokuapp.com/${category}`)
             const data = await response.json()
             setResults([...data.items])
         }
