@@ -6,7 +6,7 @@ export default function Home(props:any) {
         <div className="App">
             <main style={{ flex: 1 }}>
                 <HeroCollection />
-                <FeaturedItems handleAdd={props.handleAdd}/>
+                <FeaturedItems handleAdd={props.handleAdd} addPopup={props.addPopup}/>
             </main>
         </div>
     )

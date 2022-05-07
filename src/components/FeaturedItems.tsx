@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link } from "react-router-dom"
+import { CurrentUser } from "../contexts/CurrentUser"
 // import { ClothingItem } from "../interfaces/interfaces"
 
 export default function FeaturedItems(props:any) {
@@ -39,10 +40,16 @@ export default function FeaturedItems(props:any) {
         return `${ret}/${id}`
     }
 
+    const {currentUser} = useContext<any>(CurrentUser)
+
     const handleAdd = (e:any, res:any) => {
         e.preventDefault()
-
-        props.handleAdd(res)
+        console.log(currentUser)
+        if(!currentUser){
+            props.addPopup()
+        } else {
+            props.handleAdd(res)
+        }
     }
 
     const features = items.map((item, i) => {
