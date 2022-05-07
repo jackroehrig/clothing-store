@@ -54,7 +54,7 @@ export default function FeaturedItems(props:any) {
     const features = items.map((item, i) => {
 
         return (
-            <div className="feature-box front-page" key={i}>
+            <div className="feature-box" key={i}>
                 <img alt={item.name} src={process.env.PUBLIC_URL + item.picture} />
                 <div className="overlay">
                     <button className="add-button" onClick={(e) => handleAdd(e, item)}>+</button>
