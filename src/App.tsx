@@ -5,17 +5,23 @@ import Results from './components/Results';
 import Navbar from './components/Navbar';
 import Item from './components/Item';
 import ShowCollection from './components/ShowCollection';
+import { useState } from 'react';
 
 function App() {
+  let [cart, updateCart] = useState<any>()
+
+  const handleAdd = (res:any) => {
+    updateCart([...cart, res])
+  }
 
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar cart={cart}/>
       </header> 
       <Switch>
-        <Route exact path='/' render={() => <Home />} />
-        <Route path='/results/:category' render={() => <Results />} />
+        <Route exact path='/' render={() => <Home handleAdd={handleAdd}/>} />
+        <Route path='/results/:category' render={() => <Results handleAdd={handleAdd}/>} />
         <Route path='/show/collections/:id' render={() => <ShowCollection/>}/>
         <Route path='/:category/:id' render={() => <Item />} />
       </Switch>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { ClothingItem } from "../interfaces/interfaces"
+import { Link } from "react-router-dom"
+// import { ClothingItem } from "../interfaces/interfaces"
 
-export default function FeaturedItems() {
-    let [items, setItems] = useState<ClothingItem[]>([])
+export default function FeaturedItems(props:any) {
+    let [items, setItems] = useState<any[]>([])
 
     useEffect(() => {
         const fetchRandoms = async () => {
@@ -13,22 +14,53 @@ export default function FeaturedItems() {
         fetchRandoms()
     }, [])
 
+    const getCategoryAndId = (item: any) => {
+        let ret
+        let id
+
+
+        if (item.hatId !== undefined) {
+            ret = 'hats'
+            id = String(item.hatId)
+        } else if(item.topId !== undefined){
+            ret = 'tops'
+            id = String(item.topId)
+        } else if(item.bottomId !== undefined){
+            ret = 'bottoms'
+            id = String(item.bottomId)
+        } else if(item.shoeId !== undefined){
+            ret = 'shoes'
+            id = String(item.shoeId)
+        } else {
+            ret = 'collections'
+            id = String(item.collectionId)
+        }
+
+        return `${ret}/${id}`
+    }
+
+    const handleAdd = (e:any, res:any) => {
+        e.preventDefault()
+
+        props.handleAdd(res)
+    }
+
     const features = items.map((item, i) => {
         let image = false
-        try{
-            image = require('..' + item.picture) 
-        } catch(err){
+        try {
+            image = require('..' + item.picture)
+        } catch (err) {
             console.log(err)
         }
         // console.log(require(`..${item.picture}`))
         // let image = require('../assets/Plain/red-t-shirt.jpg')
-    
+
         return (
             <div className="feature-box" key={i}>
                 <img alt={item.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
                 <div className="overlay">
-                    <button className="add-button">+</button>
-                    <button className='view-button'>VIEW</button>
+                    <button className="add-button" onClick={(e) => handleAdd(e, item)}>+</button>
+                    <Link to={`/${getCategoryAndId(item)}`}><button className='view-button'>VIEW</button></Link>
                 </div>
             </div>
         )

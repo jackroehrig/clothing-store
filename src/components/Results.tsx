@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { StringParams } from "../interfaces/interfaces"
 // import { Collection, resItem } from "../interfaces/interfaces"
 
-export default function Results() {
+export default function Results(props:any) {
     let [results, setResults] = useState<any[]>([])
 
     const { category } = useParams<StringParams>()
@@ -20,6 +20,37 @@ export default function Results() {
     const capitalize = (word: string): string => {
         let newWord = word[0].toUpperCase() + word.slice(1)
         return newWord
+    }
+
+    const getCategoryAndId = (item: any) => {
+        let ret
+        let id
+
+
+        if (item.hatId !== undefined) {
+            ret = 'hats'
+            id = String(item.hatId)
+        } else if(item.topId !== undefined){
+            ret = 'tops'
+            id = String(item.topId)
+        } else if(item.bottomId !== undefined){
+            ret = 'bottoms'
+            id = String(item.bottomId)
+        } else if(item.shoeId !== undefined){
+            ret = 'shoes'
+            id = String(item.shoeId)
+        } else {
+            ret = 'collections'
+            id = String(item.collectionId)
+        }
+
+        return `${ret}/${id}`
+    }
+
+    const handleAdd = (e:any, res:any) => {
+        e.preventDefault()
+
+        props.handleAdd(res)
     }
 
     let squares: JSX.Element[] | undefined
@@ -49,8 +80,8 @@ export default function Results() {
                 <div className="feature-box" key={i} style={{margin: '2rem 0'}}>
                     <img alt={res.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
                     <div className="overlay">
-                        <button className="add-button">+</button>
-                        <button className='view-button'>VIEW</button>
+                        <button className="add-button" onClick={(e) => handleAdd(e, res)}>+</button>
+                        <Link to={`/${getCategoryAndId(res)}`}><button className='view-button'>VIEW</button></Link>
                     </div>
                 </div>
             )

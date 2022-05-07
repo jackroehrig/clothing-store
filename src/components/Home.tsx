@@ -1,12 +1,12 @@
 import HeroCollection from './HeroCollection';
 import FeaturedItems from './FeaturedItems';
 
-export default function Home() {
+export default function Home(props:any) {
     return (
         <div className="App">
             <main style={{ flex: 1 }}>
                 <HeroCollection />
-                <FeaturedItems />
+                <FeaturedItems handleAdd={props.handleAdd}/>
             </main>
         </div>
     )
