@@ -44,7 +44,6 @@ export default function FeaturedItems(props:any) {
 
     const handleAdd = (e:any, res:any) => {
         e.preventDefault()
-        console.log(currentUser)
         if(!currentUser){
             props.addPopup()
         } else {

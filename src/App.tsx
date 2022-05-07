@@ -38,9 +38,9 @@ function App() {
       </div>
       <Switch>
         <Route exact path='/' render={() => <Home handleAdd={handleAdd} addPopup={addPopup} />} />
-        <Route path='/results/:category' render={() => <Results handleAdd={handleAdd} />} />
+        <Route path='/results/:category' render={() => <Results handleAdd={handleAdd} addPopup={addPopup} />} />
         <Route path='/show/collections/:id' render={() => <ShowCollection />} />
-        <Route path='/:category/:id' render={() => <Item />} />
+        <Route path='/:category/:id' render={() => <Item handleAdd={handleAdd} addPopup={addPopup}/>} />
         <Route path='/signup' render={() => <SignUp />} />
         <Route path='/login' render={() => <LoginForm />} />
       </Switch>

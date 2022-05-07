@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link, useParams } from "react-router-dom"
 import { StringParams } from "../interfaces/interfaces"
+import { CurrentUser } from "../contexts/CurrentUser"
 // import { Collection, resItem } from "../interfaces/interfaces"
 
 export default function Results(props:any) {
@@ -47,10 +48,15 @@ export default function Results(props:any) {
         return `${ret}/${id}`
     }
 
+    const {currentUser} = useContext<any>(CurrentUser)
+
     const handleAdd = (e:any, res:any) => {
         e.preventDefault()
-
-        props.handleAdd(res)
+        if(!currentUser){
+            props.addPopup()
+        } else {
+            props.handleAdd(res)
+        }
     }
 
     let squares: JSX.Element[] | undefined
