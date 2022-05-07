@@ -9,14 +9,22 @@ import { useState } from 'react';
 import SignUp from './components/SignUp';
 import LoginForm from './components/LoginForm';
 import CurrentUserProvider from './contexts/CurrentUser';
+import Cart from './components/Cart';
 
 function App() {
-  let [cart, updateCart] = useState<any>([])
   let [addDisplay, setAddDisplay] = useState('none')
+  let [nav, setNav] = useState(0)
+
+  if(localStorage.getItem('cart') === null){
+    localStorage.setItem('cart', JSON.stringify([]))
+  }
 
 
   const handleAdd = (res: any) => {
-    updateCart([...cart, res])
+    let previousCart:string | null = localStorage.getItem('cart')
+    let newCart = [...JSON.parse(previousCart as string), res]
+    localStorage.setItem('cart', JSON.stringify(newCart))
+    nav === 0 ? setNav(1) : setNav(0)
   }
 
   const addPopup = () => {
@@ -26,10 +34,10 @@ function App() {
   return (
     <CurrentUserProvider style={{position: 'relative'}}>
       <header>
-        <Navbar cart={cart} />
+        {nav === 0 ? <Navbar addPopup={addPopup}/> : <Navbar addPopup={addPopup}/>}
       </header>
       <div className="add-popup" style={{ display: addDisplay }}>
-        <h4>You Must Be Signed In To Add Items To The Cart</h4>
+        <h4>You Must Be Signed In To Do That</h4>
         <div className="add-popup-buttons">
           <button className='x-button' onClick={() => setAddDisplay('none')}>x</button>
           <Link to='/login'><button>Login</button></Link>
@@ -43,6 +51,7 @@ function App() {
         <Route path='/:category/:id' render={() => <Item handleAdd={handleAdd} addPopup={addPopup}/>} />
         <Route path='/signup' render={() => <SignUp />} />
         <Route path='/login' render={() => <LoginForm />} />
+        <Route path='/cart' render={() => <Cart />} />
       </Switch>
     </CurrentUserProvider>
   );

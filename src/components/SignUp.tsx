@@ -31,7 +31,7 @@ export default function SignUp() {
                     <button onClick={(e) => {
                         e.preventDefault()
                         handleSignUp()
-                    }}>Submit</button>
+                    }}>SUBMIT</button>
                 </section>
             </form>
         </div>

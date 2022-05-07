@@ -65,6 +65,9 @@ export default function Results(props:any) {
     if (category === 'collections') {
         squares = results.map((col, i) => {
             let date = new Date(col.releaseDate)
+            if(i == 0) {
+                console.log(col)
+            }
             return (
                 <div className="col-result" key={i}>
                     <h2>{col.name}</h2>

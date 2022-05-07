@@ -1,12 +1,26 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useContext } from "react"
 import { CurrentUser } from "../contexts/CurrentUser"
 
 export default function Navbar(props: any) {
 
     let { currentUser } = useContext<any>(CurrentUser)
+
+    let cartString : string | null = localStorage.getItem('cart')
+    let cart = JSON.parse(cartString as string)
+
+
+    let history = useHistory()
+
+    const handleCartClick = () => {
+        if(currentUser){
+            history.push('/cart')
+        } else {
+            props.addPopup()
+        }
+    }
 
     return (
         <nav>
@@ -21,8 +35,8 @@ export default function Navbar(props: any) {
                 </ul>
             </div>
             <div className="shopping-info">
-                <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} />
-                <p>{props.cart?.length !== 0 ? `( ${props.cart?.length} )` : null}</p>
+                <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} onClick={() => handleCartClick()}/>
+                <p>{cart?.length !== 0 ? `( ${cart?.length} )` : null}</p>
             </div>
             <div className='login-signup'>
                 {currentUser ? null : <Link to='/login' className="login-link">Login</Link>}
