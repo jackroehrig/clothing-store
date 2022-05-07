@@ -27,6 +27,19 @@ function App() {
     nav === 0 ? setNav(1) : setNav(0)
   }
 
+  const handleDelete = (name : string) => {
+    let previousCart: string | null = localStorage.getItem('cart')
+    let previousObj : any[] = JSON.parse(previousCart as string)
+    let newObj = previousObj.filter((obj) => {
+      if(obj.name === name){
+        return false
+      }
+      return true
+    })
+    localStorage.setItem('cart', JSON.stringify(newObj))
+    nav === 0 ? setNav(1) : setNav(0)
+  }
+
   const addPopup = () => {
     setAddDisplay('initial')
   }
@@ -47,11 +60,11 @@ function App() {
       <Switch>
         <Route exact path='/' render={() => <Home handleAdd={handleAdd} addPopup={addPopup} />} />
         <Route path='/results/:category' render={() => <Results handleAdd={handleAdd} addPopup={addPopup} />} />
-        <Route path='/show/collections/:id' render={() => <ShowCollection />} />
+        <Route path='/show/collections/:id' render={() => <ShowCollection handleAdd={handleAdd} addPopup={addPopup}/>} />
         <Route path='/:category/:id' render={() => <Item handleAdd={handleAdd} addPopup={addPopup}/>} />
         <Route path='/signup' render={() => <SignUp />} />
         <Route path='/login' render={() => <LoginForm />} />
-        <Route path='/cart' render={() => <Cart />} />
+        <Route path='/cart' render={() => <Cart handleDelete={handleDelete}/>} />
       </Switch>
     </CurrentUserProvider>
   );

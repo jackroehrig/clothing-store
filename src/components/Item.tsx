@@ -32,14 +32,6 @@ export default function Item(props:any){
         }
     }
 
-    let image = false
-
-    try {
-        image = require('..' + info?.picture)
-    } catch (err) {
-        console.log(err)
-    }
-
     return (
         <div className="item-container">
             <div className="content-container">
@@ -72,7 +64,7 @@ export default function Item(props:any){
                     <button className="info-add-button" onClick={(e) => handleAdd(e, info)}>Add To Cart</button>
                 </div>
                 <div className="picture-container">
-                    <img alt={info?.name} src={image || require('../assets/Plain/red-t-shirt.jpg')}/>
+                    <img alt={info?.name} src={process.env.PUBLIC_URL + info?.picture}/>
                 </div>
             </div>
         </div>

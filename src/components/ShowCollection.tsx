@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
+import { CurrentUser } from "../contexts/CurrentUser";
 import { ClothingItem } from "../interfaces/interfaces";
 
-export default function ShowCollection() {
+export default function ShowCollection(props: any) {
     let [collection, setCollection] = useState<any>()
 
     type ResultsParams = {
@@ -10,6 +11,42 @@ export default function ShowCollection() {
     }
 
     const { id } = useParams<ResultsParams>()
+
+    const getCategoryAndId = (item: any) => {
+        let ret
+        let id
+
+
+        if (item.hatId !== undefined) {
+            ret = 'hats'
+            id = String(item.hatId)
+        } else if (item.topId !== undefined) {
+            ret = 'tops'
+            id = String(item.topId)
+        } else if (item.bottomId !== undefined) {
+            ret = 'bottoms'
+            id = String(item.bottomId)
+        } else if (item.shoeId !== undefined) {
+            ret = 'shoes'
+            id = String(item.shoeId)
+        } else {
+            ret = 'collections'
+            id = String(item.collectionId)
+        }
+
+        return `${ret}/${id}`
+    }
+
+    const { currentUser } = useContext<any>(CurrentUser)
+
+    const handleAdd = (e: any, res: any) => {
+        e.preventDefault()
+        if (!currentUser) {
+            props.addPopup()
+        } else {
+            props.handleAdd(res)
+        }
+    }
 
     useEffect(() => {
         const fetchCollection = async () => {
@@ -20,7 +57,7 @@ export default function ShowCollection() {
         fetchCollection()
     }, [id])
 
-    let date =new Date (collection?.releaseDate)
+    let date = new Date(collection?.releaseDate)
     return (
         <div className="collection-container">
             <h2>The {collection?.name} Collection</h2>
@@ -30,8 +67,12 @@ export default function ShowCollection() {
                 <section className="collection-items-container">
                     {collection?.hats[0] ? collection?.hats.map((hat: ClothingItem, i: number) => {
                         return (
-                            <div className="collection-item" key={i}>
-                                <h6>{hat.name}</h6>
+                            <div className="feature-box" key={i} style={{ margin: '2rem 0' }}>
+                                <img alt={hat.name} src={process.env.PUBLIC_URL + hat.picture} />
+                                <div className="overlay">
+                                    <button className="add-button" onClick={(e) => handleAdd(e, hat)}>+</button>
+                                    <Link to={`/${getCategoryAndId(hat)}`}><button className='view-button'>VIEW</button></Link>
+                                </div>
                             </div>
                         )
                     }) : 'This collection does not have hats.'}
@@ -40,8 +81,12 @@ export default function ShowCollection() {
                 <section className="collection-items-container">
                     {collection?.tops[0] ? collection?.tops.map((top: ClothingItem, i: number) => {
                         return (
-                            <div className="collection-item" key={i}>
-                                <h6>{top.name}</h6>
+                            <div className="feature-box" key={i} style={{ margin: '2rem 0' }}>
+                                <img alt={top.name} src={process.env.PUBLIC_URL + top.picture} />
+                                <div className="overlay">
+                                    <button className="add-button" onClick={(e) => handleAdd(e, top)}>+</button>
+                                    <Link to={`/${getCategoryAndId(top)}`}><button className='view-button'>VIEW</button></Link>
+                                </div>
                             </div>
                         )
                     }) : 'This collection does not have tops.'}
@@ -50,8 +95,12 @@ export default function ShowCollection() {
                 <section className="collection-items-container">
                     {collection?.bottoms[0] ? collection?.bottoms.map((bottom: ClothingItem, i: number) => {
                         return (
-                            <div className="collection-item" key={i}>
-                                <h6>{bottom.name}</h6>
+                            <div className="feature-box" key={i} style={{ margin: '2rem 0' }}>
+                                <img alt={bottom.name} src={process.env.PUBLIC_URL + bottom.picture} />
+                                <div className="overlay">
+                                    <button className="add-button" onClick={(e) => handleAdd(e, bottom)}>+</button>
+                                    <Link to={`/${getCategoryAndId(bottom)}`}><button className='view-button'>VIEW</button></Link>
+                                </div>
                             </div>
                         )
                     }) : 'This collection does not have bottoms.'}
@@ -60,8 +109,12 @@ export default function ShowCollection() {
                 <section className="collection-items-container">
                     {collection?.shoes[0] ? collection?.shoes.map((shoe: ClothingItem, i: number) => {
                         return (
-                            <div className="collection-item" key={i}>
-                                <h6>{shoe.name}</h6>
+                            <div className="feature-box" key={i} style={{ margin: '2rem 0' }}>
+                                <img alt={shoe.name} src={process.env.PUBLIC_URL + shoe.picture} />
+                                <div className="overlay">
+                                    <button className="add-button" onClick={(e) => handleAdd(e, shoe)}>+</button>
+                                    <Link to={`/${getCategoryAndId(shoe)}`}><button className='view-button'>VIEW</button></Link>
+                                </div>
                             </div>
                         )
                     }) : 'This collection does not have shoes.'}

@@ -1,28 +1,37 @@
 import { useHistory } from "react-router-dom"
 
-export default function Cart() {
+export default function Cart(props: any) {
 
     const cartString: string | null = localStorage.getItem('cart')
     const cart = JSON.parse(cartString as string)
 
     let history = useHistory()
 
-    let totalPrice : number = 0
+    let totalPrice: number = 0
+
+    const deleteItem = (name: string) => {
+        props.handleDelete(name)
+    }
 
     const items = cart.map((item: any, i: any) => {
         totalPrice += item.price
 
         return (
             <div className="item" style={{ borderBottom: '3px dotted white' }} key={i}>
-                <h4>{item.name}</h4>
+                <span>
+                    <button onClick={() => deleteItem(item.name)}>X</button>
+                    <h4>{item.name}</h4>
+                </span>
                 <p>$ {item.price}</p>
             </div>
         )
     })
 
     const handleOrder = () => {
-        localStorage.setItem('cart', JSON.stringify([]))
-        history.push('/')
+        if (cart.length > 0) {
+            localStorage.setItem('cart', JSON.stringify([]))
+            history.push('/')
+        }
     }
 
     return (

@@ -52,18 +52,10 @@ export default function FeaturedItems(props:any) {
     }
 
     const features = items.map((item, i) => {
-        let image = false
-        try {
-            image = require('..' + item.picture)
-        } catch (err) {
-            console.log(err)
-        }
-        // console.log(require(`..${item.picture}`))
-        // let image = require('../assets/Plain/red-t-shirt.jpg')
 
         return (
-            <div className="feature-box" key={i}>
-                <img alt={item.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
+            <div className="feature-box front-page" key={i}>
+                <img alt={item.name} src={process.env.PUBLIC_URL + item.picture} />
                 <div className="overlay">
                     <button className="add-button" onClick={(e) => handleAdd(e, item)}>+</button>
                     <Link to={`/${getCategoryAndId(item)}`}><button className='view-button'>VIEW</button></Link>

@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useHistory } from "react-router-dom"
 import { StringParams } from "../interfaces/interfaces"
 import { CurrentUser } from "../contexts/CurrentUser"
 // import { Collection, resItem } from "../interfaces/interfaces"
@@ -59,35 +59,35 @@ export default function Results(props:any) {
         }
     }
 
+    let history = useHistory()
+
+    const openCollection = (id:number) => {
+        history.push(`/show/collections/${id}`)
+    }
+
     let squares: JSX.Element[] | undefined
 
 
     if (category === 'collections') {
         squares = results.map((col, i) => {
             let date = new Date(col.releaseDate)
-            if(i == 0) {
-                console.log(col)
-            }
+            col.tops.sort(() => .5 - Math.random())
+            col.bottoms.sort(() => .5 - Math.random())
+            console.log(col)
             return (
-                <div className="col-result" key={i}>
+                <div className="col-result" key={i} onClick={() => openCollection(col.collectionId)}>
                     <h2>{col.name}</h2>
+                    <img alt={col.name} src={col?.tops[0] ? process.env.PUBLIC_URL + col?.tops[0]?.picture : process.env.PUBLIC_URL + col?.bottoms[0]?.picture}/>
                     <p>Released {`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`}</p>
                 </div>
             )
         })
     } else {
         squares = results.map((res, i) => {
-            let image
-
-            try {
-                image = require(`..${res.picture}`)
-            } catch (err) {
-                console.log(err)
-            }
 
             return (
                 <div className="feature-box" key={i} style={{margin: '2rem 0'}}>
-                    <img alt={res.name} src={image || require('../assets/Plain/red-t-shirt.jpg')} />
+                    <img alt={res.name} src={process.env.PUBLIC_URL + res.picture} />
                     <div className="overlay">
                         <button className="add-button" onClick={(e) => handleAdd(e, res)}>+</button>
                         <Link to={`/${getCategoryAndId(res)}`}><button className='view-button'>VIEW</button></Link>

@@ -17,16 +17,18 @@ nav {
   background-color: #3f3e3e;
   color: white;
   height: 8vh;
+  position: sticky;
+  top: 0;
   /* margin-bottom: 2px; */
   /* border-bottom: 3px solid rgba(0, 0, 0, 0.8); */
 
   h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     text-align: center;
     font-family: 'Eczar', serif;
     font-weight: 300;
     padding-left: 48px;
-    height: 4.9rem;
+    height: 4.5rem;
 
     a {
       color: white;
@@ -164,6 +166,7 @@ nav {
 
 .feature-box {
   width: 25%;
+  max-height: 70vh;
   position: relative;
 
   .overlay {
@@ -225,6 +228,10 @@ nav {
   }
 }
 
+.front-page {
+  max-height: 40vh;
+}
+
 // RESULTS STYLES
 .results {
   text-align: center;
@@ -244,8 +251,7 @@ nav {
   gap: 5%;
 }
 
-.result,
-.col-result {
+.result {
   width: 25%;
   border: 2px solid black;
   margin-bottom: 5%;
@@ -256,7 +262,18 @@ nav {
 }
 
 .col-result {
-  margin-top: 15px;
+  width: 25%;
+  border: 2px solid black;
+  margin: 25px 0;
+
+  img {
+    width: 75%;
+    margin: 10px 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 // SHOW COLLECTION STYLES
@@ -265,11 +282,13 @@ nav {
 
   h2 {
     margin-bottom: 5px;
+    font-size: 3rem;
+    font-family: 'Eczar', serif;
   }
 
   h5 {
     margin-top: 5px;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 
   h4 {
@@ -281,16 +300,30 @@ nav {
 .items-container {
   margin: 0 20px;
   text-align: start;
+
+  h4 {
+    margin-bottom: 10px;
+  }
 }
 
 .collection-items-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .collection-item {
   padding: 5px;
   border: 2px solid black;
+  width: 300px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    width: 100%;
+  }
 }
 
 // SHOW ITEM STYLES
@@ -358,9 +391,15 @@ nav {
       margin: 10% auto;
     }
 
+    h5, h6 {
+      margin: 0!important;
+    }
+
     .size {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      gap: 15%;
       color: white;
       height: 100%;
       width: 25%;
@@ -503,6 +542,26 @@ nav {
   .item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    button {
+      width: 3rem;
+      height: 1.5rem;
+      background-color: transparent;
+      color: white;
+      font-weight: 600;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    span {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      flex: 1;
+    }
   }
 
   .bottom-container {
