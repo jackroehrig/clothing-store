@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { ClothingItem } from "../interfaces/interfaces";
-
 export default function ShowCollection(props: any) {
     let [collection, setCollection] = useState<any>()
 
