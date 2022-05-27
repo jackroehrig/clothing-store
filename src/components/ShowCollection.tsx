@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { ClothingItem } from "../interfaces/interfaces";
 
@@ -57,9 +57,12 @@ export default function ShowCollection(props: any) {
         fetchCollection()
     }, [id])
 
+    const history = useHistory()
+
     let date = new Date(collection?.releaseDate)
     return (
         <div className="collection-container">
+            <button className="exit-button" onClick={() => history.push('/results/collections')}>{'<'}</button>
             <h2>The {collection?.name} Collection</h2>
             <h5>Released {date.getDate()}-{date.getDay()}-{date.getFullYear()}</h5>
             <div className="items-container">

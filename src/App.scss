@@ -6,7 +6,7 @@
 
 main {
   background-color: rgb(222, 224, 225);
-  min-height: 90vh;
+  min-height: 91vh;
   padding-bottom: 10px;
 }
 
@@ -35,6 +35,18 @@ nav {
       color: white;
       text-decoration: none;
       height: 100%;
+    }
+  }
+
+  .logout-button {
+    border: 2px solid white;
+    color: white;
+    background-color: transparent;
+    padding: 3px 6px;
+    font-family: 'Nunito', sans-serif;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -277,6 +289,22 @@ nav {
 // SHOW COLLECTION STYLES
 .collection-container {
   text-align: center;
+  position: relative;
+
+  .exit-button {
+    position: absolute;
+    top: -1vw;
+    left: 1vw;
+    width: 3rem;
+    font-size: 2rem;
+    background-color: #3f3e3e;
+    color: white;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   h2 {
     margin-bottom: 5px;
@@ -297,7 +325,7 @@ nav {
 }
 
 .items-container {
-  margin: 0 20px;
+  margin: 0 50px;
   text-align: start;
 
   h4 {
@@ -307,8 +335,13 @@ nav {
 
 .collection-items-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+
+  .feature-box {
+    width: 25%;
+  }
 }
 
 .collection-item {
@@ -329,6 +362,22 @@ nav {
 .item-container {
   height: 88vh;
   padding: 2vh;
+  position: relative;
+
+  .exit-button {
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    width: 3rem;
+    font-size: 2rem;
+    background-color: #3f3e3e;
+    color: white;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .content-container {
     display: flex;
@@ -442,12 +491,12 @@ nav {
   }
 
   form {
-    text-align: start;
+    text-align: center;
     display: inline-block;
     margin: auto;
     padding: 2rem;
     border: 2px solid black;
-    width: 10%;
+    width: 200px;
 
     section {
       width: 100%;

@@ -6,7 +6,7 @@ import { CurrentUser } from "../contexts/CurrentUser"
 
 export default function Navbar(props: any) {
 
-    let { currentUser } = useContext<any>(CurrentUser)
+    let { currentUser, setCurrentUser } = useContext<any>(CurrentUser)
 
     let cartString : string | null = localStorage.getItem('cart')
     let cart = JSON.parse(cartString as string)
@@ -22,6 +22,12 @@ export default function Navbar(props: any) {
         }
     }
 
+    const logOut = () => {
+        setCurrentUser(null)
+        localStorage.removeItem('token')
+        history.go(0)
+    }
+
     return (
         <nav>
             <h1><Link to="/">BASICS</Link></h1>
@@ -35,10 +41,11 @@ export default function Navbar(props: any) {
                 </ul>
             </div>
             <div className="shopping-info">
-                <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} onClick={() => handleCartClick()}/>
+                {currentUser ? <FontAwesomeIcon id='shopping-cart' icon={faCartShopping} onClick={() => handleCartClick()}/> : null}
                 <p>{cart?.length !== 0 ? `( ${cart?.length} )` : null}</p>
             </div>
             <div className='login-signup'>
+                {currentUser ? <button className='logout-button' onClick={logOut}>LOGOUT</button> : null}
                 {currentUser ? null : <Link to='/login' className="login-link">Login</Link>}
                 {currentUser ? null : <Link to='/signup' className="sign-up-link">Sign Up</Link>}
             </div>

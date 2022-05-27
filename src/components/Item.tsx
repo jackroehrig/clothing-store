@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import { StringParams } from "../interfaces/interfaces"
 import { CurrentUser } from "../contexts/CurrentUser"
 
@@ -32,8 +32,11 @@ export default function Item(props:any){
         }
     }
 
+    const history = useHistory()
+
     return (
         <div className="item-container">
+            <button className="exit-button" onClick={() => history.push(`/results/${category}`)}>{'<'}</button>
             <div className="content-container">
                 <div className="info-container">
                     <h2>{info?.name}</h2>

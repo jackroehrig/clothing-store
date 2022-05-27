@@ -8,6 +8,7 @@ export default function SignUp() {
     let history = useHistory()
 
     const handleSignUp = async () => {
+        console.log(username, password)
         await fetch(`https://blooming-bastion-32922.herokuapp.com/users/`, {
             method: 'POST',
             headers: {
@@ -16,7 +17,7 @@ export default function SignUp() {
             body: JSON.stringify({username: username, password: password})
         })
 
-        history.push(`/`)
+        history.replace(`/login`)
     }
 
     return (
