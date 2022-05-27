@@ -23,7 +23,3 @@ The easier way is to follow the live link I've provided or can if you contact me
     - Express
     - Sequelize w/ PostgreSQL
     - Bcrypt/JSON Web Token for Authentication
-
-## BUGS
-    - Sometimes going back with the arrow in the top left won't load the page you go back to.
-    - Picture load multiple times sometimes due to typescript only have react-router v5 available and issues with dynamically loading pictures in create react app. 
