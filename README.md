@@ -8,7 +8,7 @@ This project was inspired by me surfing through sites similar to this one so I a
 
 You can clone it yourself but you will need to create your own database and create a .env folder where you will store the db name, username, and password. As well as the JSON web token random string. 
 
-The easier way is to follow the live link I've provided or can if you contact me of course.
+The easier way is to [follow the live link I've provided](https://radiant-ridge-27206.herokuapp.com/).
 
 ## Technologies
 
